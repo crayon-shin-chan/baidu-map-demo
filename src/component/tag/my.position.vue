@@ -51,6 +51,11 @@ export default class MyPosition extends Vue {
 <!-- vue组件样式，使用scss -->
 <style lang="scss">
 
+    /* 去掉百度地图logo */
+    .anchorBL{
+        display:none;
+    }
+
     .map-container{
         width:100%;
         height: 500px;
