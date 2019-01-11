@@ -2,7 +2,7 @@
 <template>
     <el-container class="region-container">
         <el-aside class="region-aside">
-            <el-tree :props="props" :load="load" lazy > </el-tree>
+            <el-tree :props="props" :load="load" lazy> </el-tree>
         </el-aside>
         <el-main class="region-main">
             <div id="map-container" class="map-container">
@@ -51,9 +51,13 @@ export default class Region extends Vue {
                 return resolve(list.map((item:any)=>{return {name:item.n}}));
             }
         }else if(node.level == 2){
+            if(node.parent.data.data != "provinces"){
+                return resolve([])
+            }
             let province = this.regions["provinces"][node.data.data]
             return resolve(province.cities.map((item:any)=>{return {name:item.n}}))
         }else{
+            return resolve([])
         }
     }
 
