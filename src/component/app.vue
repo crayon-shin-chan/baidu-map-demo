@@ -19,14 +19,11 @@
 <script lang="ts">
 
 import Component from 'vue-class-component'
-import MyPosition from './tag/my.position.vue'
-import Region from './tag/region.vue'
 import Vue from 'vue'
 
 
 @Component({})
 export default class App extends Vue {
-
 }
 
 </script>

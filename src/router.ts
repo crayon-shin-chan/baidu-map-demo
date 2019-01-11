@@ -10,6 +10,10 @@ const router:VueRouter = new VueRouter(
     {
         routes:[
             {
+                path:"/",
+                component: MyPosition
+            },
+            {
                 path:"/myposition",
                 component: MyPosition
             },
