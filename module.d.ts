@@ -1,5 +1,13 @@
+
+
 declare module 'BMap' {
-    export const Map:any;
+    export class Map{
+        constructor(id:string,options:any);
+        enableScrollWheelZoom(is:boolean):void;
+        enableAutoResize():void;
+        addControl(control:any):any;
+        centerAndZoom(point:any, level:number):void;
+    }
     export const MapTypeControl:any
     export const NavigationControl:any
     export const ScaleControl:any
