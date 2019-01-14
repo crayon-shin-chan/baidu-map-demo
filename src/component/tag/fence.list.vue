@@ -17,6 +17,7 @@ import Vue from 'vue'
 export default class FenceList extends Vue {
 
     createFence(){
+        /** 路由跳转要使用绝对路径 */
         this.$router.push("/fence/create")
     }
 

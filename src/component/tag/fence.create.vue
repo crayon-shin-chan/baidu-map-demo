@@ -14,10 +14,6 @@ import Vue from 'vue'
 @Component({})
 export default class FenceCreate extends Vue {
 
-    createFence(){
-        this.$router.push("/fence/create")
-    }
-
 }
 
 </script>
