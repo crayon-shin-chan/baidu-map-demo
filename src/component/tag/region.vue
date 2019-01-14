@@ -45,8 +45,6 @@ export default class Region extends Vue {
 
     mounted () {
         this.map = create("map-container");
-        let map = this.map;
-
     }
 
     load(node:any, resolve:any , reject:any){

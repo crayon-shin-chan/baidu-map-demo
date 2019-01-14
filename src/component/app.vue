@@ -5,6 +5,7 @@
       <el-menu default-active="myposition" mode="horizontal" router background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
         <el-menu-item index="myposition">我的位置</el-menu-item>
         <el-menu-item index="region">行政区域</el-menu-item>
+        <el-menu-item index="fence">围栏管理</el-menu-item>
         <el-menu-item index="2">位置查询</el-menu-item>
         <el-menu-item index="3">路线查询</el-menu-item>
         <el-menu-item index="4">轨迹查询</el-menu-item>
