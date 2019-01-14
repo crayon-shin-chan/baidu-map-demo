@@ -25,23 +25,23 @@ declare module 'BMap' {
     /** 多边形构造函数选项 */
     export type PolygonOptions = {
         /** 边线颜色 */
-        strokeColor:string,
+        strokeColor?:string,
         /** 填充颜色 */
-        fillColor:string,
+        fillColor?:string,
         /** 边线宽度 */
-        strokeWeight:number,
+        strokeWeight?:number,
         /** 边线透明度 */
-        strokeOpacity:number,
+        strokeOpacity?:number,
         /** 填充透明度 */
-        fillOpacity:number,
+        fillOpacity?:number,
         /** 边线样式 */
-        strokeStyle:string,
+        strokeStyle?:string,
         /** 是否在调用map.clearOverlays时清除此覆盖物 */
-        enableMassClear:boolean,
+        enableMassClear?:boolean,
         /** 是否启用线编辑，默认为false */
-        enableEditing:boolean,
+        enableEditing?:boolean,
         /** 是否响应点击事件，默认为true */
-        enableClicking:boolean
+        enableClicking?:boolean
     }
     /** 折线类 */
     export class Polyline{
@@ -104,11 +104,17 @@ declare module 'BMap' {
     export const LocalCity:any
     /** 定位控制器 */
     export const GeolocationControl:any
+    /** 行政区域边界搜索 */
+    export class Boundary{
+        get(name:string,callback:(rs:any)=>void):void
+    }
 }
 
+/** 百度地图开源库，需要分别引入js文件 */
 declare module 'BMapLib'{
     import * as BMap from 'BMap'
-    class GeoUtils{
+    /** 地图计算工具类 */
+    export class GeoUtils{
         /** 度转化为弧度 */
         static degreeToRad(defree:number):number;
         /** 弧度转化为角度 */
@@ -127,11 +133,16 @@ declare module 'BMapLib'{
         static isPointInRect(point:BMap.Point, bounds:BMap.Bounds):boolean;
         /** 点是否在折线上 */
         static isPointOnPolyline(point:BMap.Point, polyline:BMap.Polyline):boolean;
-
+    }
+    /** 地图区域限制类 */
+    export class AreaRestriction{
+        /** 清除地图区域限制 */
+        static clearBounds():void;
+        /** 对地图区域添加限制 */
+        static setBounds(map:BMap.Map, bounds:BMap.Bounds):boolean;
     }
 }
 
-declare module ''
 
 declare module '*.scss' {
     const content: any;

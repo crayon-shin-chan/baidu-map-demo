@@ -33,7 +33,6 @@ export default class Region extends Vue {
     };
 
     mounted () {
-        console.log(BMap as any)
         this.map = create("map-container");
         let map = this.map;
 
@@ -67,12 +66,20 @@ export default class Region extends Vue {
             return
         }
         let name = node.data.name;
-        console.log(node)
         let parent = node.parent
         while(parent&&parent.data&&parent.level>1){
             name = parent.data.name + name
             parent = parent.parent
         }
+        new BMap.Boundary().get(name,(rs)=>{
+            let pointss:BMap.Point[][] = rs.boundaries.map((item:any)=>item.split(";").map((str:string)=>new BMap.Point(+str.split(",")[0],+str.split(",")[1])))
+            let points:BMap.Point[] = [];
+            pointss.forEach(ps=>points = points.concat(ps))
+            console.log(points)
+            this.map.clearOverlays()
+            this.map.addOverlay(new BMap.Polygon(points,{strokeColor:"green",strokeWeight:2}))
+            this.map.setViewport(points)
+        })
 
     }
 
