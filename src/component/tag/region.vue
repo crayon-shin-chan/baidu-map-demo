@@ -2,7 +2,7 @@
 <template>
     <el-container class="region-container">
         <el-aside class="region-aside">
-            <el-tree :props="props" :load="load" lazy> </el-tree>
+            <el-tree :props="props" :load="load" @node-click="onNodeClick" accordion lazy highlight-current class="region-tree"> </el-tree>
         </el-aside>
         <el-main class="region-main">
             <div id="map-container" class="map-container">
@@ -33,6 +33,7 @@ export default class Region extends Vue {
     };
 
     mounted () {
+        console.log(BMap as any)
         this.map = create("map-container");
         let map = this.map;
 
@@ -61,6 +62,20 @@ export default class Region extends Vue {
         }
     }
 
+    onNodeClick(data:any,node:any){
+        if(node.level <= 1){
+            return
+        }
+        let name = node.data.name;
+        console.log(node)
+        let parent = node.parent
+        while(parent&&parent.data&&parent.level>1){
+            name = parent.data.name + name
+            parent = parent.parent
+        }
+
+    }
+
 
 }
 
@@ -79,11 +94,26 @@ export default class Region extends Vue {
         height: 100%;
     }
 
+    .region-tree{
+        width: 80%;
+        margin: 20px auto 0px auto;
+        padding: 20px;
+        border-radius: 5px;
+        background: {
+            color: white;
+        }
+    }
+
 
     .region-main{
         width: 80%;
         height: 100%;
         padding: 0px;
+    }
+
+    .map-container{
+        width: 100%;
+        height: 100%;
     }
 
     /* 去掉百度地图logo */
