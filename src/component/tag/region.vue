@@ -2,6 +2,15 @@
 <template>
     <el-container class="region-container">
         <el-aside class="region-aside">
+            <!--经纬度填写框-->
+            <el-form label-width="100px" class="region-current">
+                <el-form-item label="当前地区">
+                    <el-input placeholder="" suffix-icon="el-icon-location" v-model="region"></el-input>
+                </el-form-item>
+                <el-form-item>
+                     <el-button type="primary" @click="regionLocation">地区定位</el-button>
+                </el-form-item>
+            </el-form>
             <el-tree :props="props" :load="load" @node-click="onNodeClick" accordion lazy highlight-current class="region-tree"> </el-tree>
         </el-aside>
         <el-main class="region-main">
@@ -24,6 +33,8 @@ import regions from '../../util/region.util'
 export default class Region extends Vue {
 
     map: any = null;
+
+    region:string = "";
 
     regions: any = regions;
 
@@ -71,16 +82,26 @@ export default class Region extends Vue {
             name = parent.data.name + name
             parent = parent.parent
         }
+        this.region = name
         new BMap.Boundary().get(name,(rs)=>{
             let pointss:BMap.Point[][] = rs.boundaries.map((item:any)=>item.split(";").map((str:string)=>new BMap.Point(+str.split(",")[0],+str.split(",")[1])))
             let points:BMap.Point[] = [];
             pointss.forEach(ps=>points = points.concat(ps))
-            console.log(points)
             this.map.clearOverlays()
-            this.map.addOverlay(new BMap.Polygon(points,{strokeColor:"green",strokeWeight:2}))
+            this.map.addOverlay(new BMap.Polygon(points,{strokeColor:"green",strokeWeight:2,strokeOpacity:0,fillOpacity:0.1}))
             this.map.setViewport(points)
         })
+    }
 
+    regionLocation(){
+        new BMap.Boundary().get(this.region,(rs)=>{
+            let pointss:BMap.Point[][] = rs.boundaries.map((item:any)=>item.split(";").map((str:string)=>new BMap.Point(+str.split(",")[0],+str.split(",")[1])))
+            let points:BMap.Point[] = [];
+            pointss.forEach(ps=>points = points.concat(ps))
+            this.map.clearOverlays()
+            this.map.addOverlay(new BMap.Polygon(points,{strokeColor:"green",strokeWeight:2,strokeOpacity:0,fillOpacity:0.1}))
+            this.map.setViewport(points)
+        })
     }
 
 
@@ -99,6 +120,16 @@ export default class Region extends Vue {
     .region-aside{
         width: 20%;
         height: 100%;
+    }
+    
+    .region-current{
+        width: 80%;
+        margin: 20px auto 0px auto;
+        padding: 20px;
+        border-radius: 5px;
+        background: {
+            color: white;
+        }
     }
 
     .region-tree{
