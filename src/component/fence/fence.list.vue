@@ -16,6 +16,27 @@ import Vue from 'vue'
 @Component({})
 export default class FenceList extends Vue {
 
+    fences = [
+                {
+                    id: 1,
+                    name: '圆形一',
+                    type: 'circle',
+                    data:[104,23,230000]
+                },
+                {
+                    id: 2,
+                    name: '矩形一',
+                    type: 'rect',
+                    data: [102,23,112,23,112,45,102,45]
+                },
+                {
+                    id: 3,
+                    name: '多边形一',
+                    type: 'poly',
+                    data: [106,23,112,23,112,45,102,45,96,20]
+                }
+    ];
+
     createFence(){
         /** 路由跳转要使用绝对路径 */
         this.$router.push("/fence/create")

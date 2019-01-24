@@ -34,7 +34,7 @@ const config: webpack.Configuration = {
         splitChunks: {
             chunks: 'all',
             name: 'common'
-        },
+        }
     },
     resolve: {
         extensions: ['.ts','.js', '.vue', '.json']
