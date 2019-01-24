@@ -1,11 +1,11 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
-const MyPosition = () => import(/* webpackChunkName: "MyPosition" */ './component/tag/my.position.vue')
-const Region = ()=> import(/* webpackChunkName: "Region" */ './component/tag/region.vue')
-const Fence = ()=> import(/* webpackChunkName: "Fence" */ './component/tag/fence.vue')
-const FenceList = ()=> import(/* webpackChunkName: "FenceList" */ './component/tag/fence.list.vue')
-const FenceCreate = ()=> import(/* webpackChunkName: "FenceCreate" */ './component/tag/fence.create.vue')
+const MyPosition = () => import(/* webpackChunkName: "MyPosition" */ './component/position/my.position.vue')
+const Region = ()=> import(/* webpackChunkName: "Region" */ './component/region/region.vue')
+const Fence = ()=> import(/* webpackChunkName: "Fence" */ './component/fence/fence.vue')
+const FenceList = ()=> import(/* webpackChunkName: "FenceList" */ './component/fence/fence.list.vue')
+const FenceCreate = ()=> import(/* webpackChunkName: "FenceCreate" */ './component/fence/fence.create.vue')
 
 Vue.use(VueRouter);
 

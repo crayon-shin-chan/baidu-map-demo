@@ -23,7 +23,6 @@ export default class Fence extends Vue {
 
     map: any = null;
 
-
     mounted () {
         this.map = create("map-container");
     }

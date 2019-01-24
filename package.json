@@ -4,8 +4,8 @@
   "description": "百度地图Demo",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack-dev-server --open --hot --inline",
+    "build": "webpack --progress ",
+    "dev": "webpack-dev-server --progress --open --hot --inline",
     "check": "tslint -p tsconfig.json -c tslint.json --type-check",
     "fix": "tslint -p tsconfig.json -c tslint.json --fix"
   },
